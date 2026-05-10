@@ -57,13 +57,15 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Event $event)
+    public function show($id) // On prend l'ID, pas le modèle
     {
-        $event = Event::find($event->id, "id");
+        $event = Event::find($id);
+
         if (!$event) {
-            $this->abortApi('EVENT_NOT_FOUND', 'Event does not exist', 404);
+            $this->abortApi('EVENT_NOT_FOUND', 'Cet événement n\'existe pas.', 404);
         }
-        return $event;
+
+        return response()->json($event);
     }
 
     /**
@@ -77,9 +79,28 @@ class EventController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Event $event)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'title' => 'required|max:100',
+            'description' => 'nullable',
+            'date' => 'required',
+            'location' => 'required',
+            'capacity' => 'required|integer|min:1',
+        ]);
+
+        $event = Event::find($id);
+
+        if (!$event) {
+            $this->abortApi('EVENT_NOT_FOUND', 'Cet événement n\'existe pas.', 404);
+        }
+
+        $event->update($validated);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $event
+        ], 200);
     }
 
     /**
