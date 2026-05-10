@@ -1,11 +1,6 @@
-# 🎟️ EventFlow - Plateforme de Gestion d'Événements
-
-Bienvenue sur le dépôt d'**EventFlow**, une application full-stack de gestion d'événements et d'inscriptions. 
-
-Ce projet a été conçu avec une attention particulière portée sur la **Developer Experience (DX)**, la robustesse de l'API, et l'**Expérience Utilisateur (UX)**. L'objectif est d'offrir une interface fluide, réactive, et tolérante aux erreurs.
+# 🎟️ Plateforme de Gestion d'Événements
 
 ---
-
 ## 🏗️ Architecture et Choix Techniques
 
 Pour répondre aux exigences du projet tout en garantissant un code propre et maintenable, la stack suivante a été choisie :
