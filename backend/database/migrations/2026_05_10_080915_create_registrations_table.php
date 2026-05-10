@@ -14,9 +14,10 @@ return new class extends Migration {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->foreignId("event_id")->constrained()->cascadeOnDelete();
             $table->timestamp('registred_at');
+            $table->unique(['event_id', 'email']);
         });
     }
 
