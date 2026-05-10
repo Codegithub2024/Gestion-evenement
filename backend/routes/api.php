@@ -9,3 +9,4 @@ Route::get('/user', function (Request $request) {
 
 Route::post('/events', [App\Http\Controllers\EventController::class, 'store']);
 Route::get('/events', [App\Http\Controllers\EventController::class, 'index']);
+Route::get('/events/:id', [App\Http\Controllers\EventController::class, 'show']);

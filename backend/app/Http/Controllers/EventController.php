@@ -16,7 +16,11 @@ class EventController extends Controller
      */
     public function index()
     {
-        return Event::all();
+        $event = Event::all();
+        if (!$event) {
+            $this->abortApi('EVENT_NOT_FOUND', 'No events found', 404);
+        }
+        return $event;
     }
 
     /**
@@ -55,7 +59,11 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event = Event::find($event->id, "id");
+        if (!$event) {
+            $this->abortApi('EVENT_NOT_FOUND', 'Event does not exist', 404);
+        }
+        return $event;
     }
 
     /**
